@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "264589282998",
+    "firebase_url": "https://whats-up-26a0a.firebaseio.com",
+    "project_id": "whats-up-26a0a",
+    "storage_bucket": "whats-up-26a0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:264589282998:android:d71e98525aad0365",
+        "android_client_info": {
+          "package_name": "com.fb.pc.letstalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "264589282998-3jtds2h5gerfumni4rl9p4ml9tlrobfi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fb.pc.letstalk",
+            "certificate_hash": "ba709009357df0ca14bae02527c8bd9c398d131a"
+          }
+        },
+        {
+          "client_id": "264589282998-ghb9dr78tdq60ve7ehuic3gd4pjm64dt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsq3hpnhjz39TmfOHvICrE_RQbsF84RBA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "264589282998-ghb9dr78tdq60ve7ehuic3gd4pjm64dt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
