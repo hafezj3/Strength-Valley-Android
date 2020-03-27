@@ -3,6 +3,7 @@ package com.app.strengthvalley;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.app.strengthvalley.Cache.Cacher;
 import com.app.strengthvalley.Classes.User;
 
 
@@ -12,6 +13,7 @@ public class Session {
     public static final String GCM_LAST_SERVER_UPDATE = "gcm.last.server.update";
     //    private static final String VERSION = "5000";
     private static Session instance;
+    private static Cacher cacher;
     private static Context app;
     public String sessionId;
     public String token;
@@ -22,6 +24,13 @@ public class Session {
     public long lastFcmUpdate;
     private User user;
 
+    public static Cacher getCacher() {
+        return cacher;
+    }
+
+    public static void setCacher(Cacher cacher) {
+        Session.cacher = cacher;
+    }
 
     private Session() {
         SharedPreferences sp = getSharedPreferences();
@@ -38,6 +47,7 @@ public class Session {
     public static Session init(Context context) {
         app = context;
         instance = new Session();
+        cacher = new Cacher(app);
         return instance;
     }
 
