@@ -1,5 +1,6 @@
 package com.app.strengthvalley.Classes;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class User {
@@ -8,22 +9,28 @@ public class User {
     public static String FEMALE = "F";
 
     private long id;
-    private String name;
+    private String firstName;
+    private String lastName;
+    private String username;
     private String gender;
     private double weight;
     private int workoutCount;
     private int workoutCountCurrentWeek;
+    private LocalDateTime birthDate;
 
     public User() {
     }
 
-    public User(long id, String name, String gender, double weight, int workoutCount, int workoutCountCurrentWeek) {
+    public User(long id, String name, String username,
+                String gender, double weight, int workoutCount, int workoutCountCurrentWeek, LocalDateTime birthDate) {
         this.id = id;
-        this.name = name;
+        this.firstName = name;
+        this.username = username;
         this.gender = gender;
         this.weight = weight;
         this.workoutCount = workoutCount;
         this.workoutCountCurrentWeek = workoutCountCurrentWeek;
+        this.birthDate = birthDate;
     }
 
     public long getId() {
@@ -34,12 +41,28 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public int getWorkoutCount() {
@@ -74,6 +97,14 @@ public class User {
         this.weight = weight;
     }
 
+    public LocalDateTime getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDateTime birthDate) {
+        this.birthDate = birthDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -86,4 +117,6 @@ public class User {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
 }
