@@ -7,6 +7,10 @@ import java.util.Objects;
 
 public class Set {
 
+   public static String WARM_UP = "W";
+   public static String FAILURE = "F";
+
+
    private long id;
    private long exerciseId;
    private int reps;

@@ -14,7 +14,7 @@ public class Utils {
         double weight = barbell.getWeight();
 
         for (Plate plate : plates) {
-            weight += plate.getWeight();
+            weight += 2*plate.getWeight();
         }
         return weight;
     }

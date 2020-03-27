@@ -3,10 +3,10 @@ package com.app.strengthvalley.Classes;
 import java.util.ArrayList;
 import java.util.Objects;
 
-import androidx.annotation.Nullable;
 
 public class Exercise {
 
+    /*All possible types*/
     public static String BODY_WEIGHT = "BW";
     public static String ASSISTED_BODY_WEIGHT = "ABW";
     public static String CARDIO = "BW";
@@ -15,6 +15,17 @@ public class Exercise {
     public static String DUMBELL = "D";
     public static String MACHINE = "M";
     public static String DURATION = "T";
+
+    /*All possible muscle categories*/
+    public static String CHEST = "CHEST";
+    public static String BACK = "BACK";
+    public static String SHOULDERS = "SHOULDERS";
+    public static String LEGS = "LEGS";
+    public static String BICEPS = "BICEPS";
+    public static String TRICEPS = "TRICEPS";
+    public static String FOREARMS = "FOREARMS";
+    public static String TRAPEZII = "TRAPEZII";
+    public static String CORE = "CORE";
 
     private Long id;
     private String name;
@@ -25,19 +36,23 @@ public class Exercise {
     private double totalVolume;
     private String comment;
     private String type;
+    private ArrayList<String> muscleCategories;
 
     public Exercise() {
     }
 
-    public Exercise(Long id, String name, ArrayList<Set> sets, int order, int e1RMposition, int e1RM, String comment, String type) {
+    public Exercise(Long id, String name, ArrayList<Set> sets, int order,
+           int e1RMPosition, int e1RM, double totalVolume, String comment, String type, ArrayList<String> muscleCategories) {
         this.id = id;
         this.name = name;
         this.sets = sets;
         this.order = order;
-        this.E1RMPosition = e1RMposition;
+        E1RMPosition = e1RMPosition;
         E1RM = e1RM;
+        this.totalVolume = totalVolume;
         this.comment = comment;
         this.type = type;
+        this.muscleCategories = muscleCategories;
     }
 
     public Long getId() {
@@ -118,6 +133,14 @@ public class Exercise {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public ArrayList<String> getMuscleCategories() {
+        return muscleCategories;
+    }
+
+    public void setMuscleCategories(ArrayList<String> muscleCategories) {
+        this.muscleCategories = muscleCategories;
     }
 
     @Override
