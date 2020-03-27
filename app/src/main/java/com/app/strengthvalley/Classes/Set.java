@@ -1,5 +1,10 @@
 package com.app.strengthvalley.Classes;
 
+import com.app.strengthvalley.Modules.Utils;
+
+import java.util.ArrayList;
+import java.util.Objects;
+
 public class Set {
 
    private long id;
@@ -7,6 +12,10 @@ public class Set {
    private int reps;
    private int order;
    private double weight;
+   private Dumbell dumbell;
+   private Plate plate;
+   private Barbell barbell;
+   private ArrayList<Plate> plates;
    private int duration;//in seconds
    private int E1RM;// estimated 1RM
    private double volume;
@@ -24,12 +33,6 @@ public class Set {
         this.comment = null;
         this.status = null;
     }
-
-
-//    public Set(Set set){
-//        this = new Set()
-//    }
-
 
     public Set(long id, long exerciseId, int reps, int order, double weight, int duration, String comment,String status) {
         this.id = id;
@@ -112,7 +115,11 @@ public class Set {
     }
 
     public void setE1RM(int e1RM) {
-        E1RM = e1RM;
+        this.E1RM = e1RM;
+    }
+
+    public void setE1RM() {
+        Utils.calculateE1RM(reps,weight);
     }
 
     public double getVolume() {
@@ -121,5 +128,54 @@ public class Set {
 
     public void setVolume(double volume) {
         this.volume = volume;
+    }
+
+    public Dumbell getDumbell() {
+        return dumbell;
+    }
+
+    public void setDumbell(Dumbell dumbell) {
+        this.dumbell = dumbell;
+    }
+
+    public Plate getPlate() {
+        return plate;
+    }
+
+    public void setPlate(Plate plate) {
+        this.plate = plate;
+    }
+
+    public void setWeight(){
+        this.weight = Utils.totalBarbellWeight(this.barbell,this.plates);
+    }
+
+    public Barbell getBarbell() {
+        return barbell;
+    }
+
+    public void setBarbell(Barbell barbell) {
+        this.barbell = barbell;
+    }
+
+    public ArrayList<Plate> getPlates() {
+        return plates;
+    }
+
+    public void setPlates(ArrayList<Plate> plates) {
+        this.plates = plates;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Set)) return false;
+        Set set = (Set) o;
+        return id == set.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

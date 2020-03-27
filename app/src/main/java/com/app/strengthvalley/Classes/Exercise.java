@@ -1,6 +1,9 @@
 package com.app.strengthvalley.Classes;
 
 import java.util.ArrayList;
+import java.util.Objects;
+
+import androidx.annotation.Nullable;
 
 public class Exercise {
 
@@ -20,10 +23,6 @@ public class Exercise {
     private int E1RMPosition;
     private int E1RM;
     private double totalVolume;
-    private Dumbell dumbell;
-    private Plate plate;
-    private Barbell barbell;
-    private ArrayList<Plate> plates;
     private String comment;
     private String type;
 
@@ -105,38 +104,6 @@ public class Exercise {
         E1RMPosition = e1RMPosition;
     }
 
-    public Dumbell getDumbell() {
-        return dumbell;
-    }
-
-    public void setDumbell(Dumbell dumbell) {
-        this.dumbell = dumbell;
-    }
-
-    public Plate getPlate() {
-        return plate;
-    }
-
-    public void setPlate(Plate plate) {
-        this.plate = plate;
-    }
-
-    public Barbell getBarbell() {
-        return barbell;
-    }
-
-    public void setBarbell(Barbell barbell) {
-        this.barbell = barbell;
-    }
-
-    public ArrayList<Plate> getPlates() {
-        return plates;
-    }
-
-    public void setPlates(ArrayList<Plate> plates) {
-        this.plates = plates;
-    }
-
     public String getComment() {
         return comment;
     }
@@ -151,5 +118,18 @@ public class Exercise {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Exercise)) return false;
+        Exercise exercise = (Exercise) o;
+        return Objects.equals(id, exercise.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

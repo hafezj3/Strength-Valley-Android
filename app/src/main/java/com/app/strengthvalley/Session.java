@@ -4,33 +4,46 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.app.strengthvalley.Classes.User;
-//import android.os.Build;
-//import android.util.Log;
-//import java.net.HttpURLConnection;
-//import java.util.ArrayList;
-//import java.util.HashMap;
-//import java.util.List;
-//import java.util.Locale;
-//import java.util.Map;
 
 
-public class Session{
+
+public class Session {
+    public static final long GCM_REFRESH_TOKEN_TIME = 12 * 60 * 60 * 1000;
+    public static final String GCM_LAST_SERVER_UPDATE = "gcm.last.server.update";
     //    private static final String VERSION = "5000";
     private static Session instance;
     private static Context app;
-    public static final long GCM_REFRESH_TOKEN_TIME = 12 * 60 * 60 * 1000;
-    public static final String GCM_LAST_SERVER_UPDATE = "gcm.last.server.update";
     public String sessionId;
     public String token;
     public String deviceId;
     public String sessionCounter;
-
-    private User user;
-
     public int appVersionForFcm;
     public String fcmToken;
     public long lastFcmUpdate;
+    private User user;
 
+
+    private Session() {
+        SharedPreferences sp = getSharedPreferences();
+        deviceId = sp.getString("deviceId", null);
+        sessionId = sp.getString("sessionId", null);
+        token = sp.getString("token", null);
+        sessionCounter = sp.getString("sessionCounter", "0");
+        fcmToken = sp.getString("fcmToken", null);
+        lastFcmUpdate = sp.getLong("lastFcmUpdate", 0);
+        appVersionForFcm = sp.getInt("appVersionForFcm", 0);
+
+    }
+
+    public static Session init(Context context) {
+        app = context;
+        instance = new Session();
+        return instance;
+    }
+
+    public static Session get() {
+        return instance;
+    }
 
     public User getUser() {
         return user;
@@ -53,28 +66,13 @@ public class Session{
         return getSharedPreferences().edit().putLong(GCM_LAST_SERVER_UPDATE, gcmLastServerUpdate).commit();
     }
 
-    private Session() {
-        SharedPreferences sp = getSharedPreferences();
-        deviceId = sp.getString("deviceId", null);
-        sessionId = sp.getString("sessionId", null);
-        token = sp.getString("token", null);
-        sessionCounter = sp.getString("sessionCounter", "0");
-        fcmToken = sp.getString("fcmToken", null);
-        lastFcmUpdate = sp.getLong("lastFcmUpdate", 0);
-        appVersionForFcm = sp.getInt("appVersionForFcm", 0);
-
-    }
-
-
     public SharedPreferences getSharedPreferences() {
         return app.getSharedPreferences("session", Context.MODE_PRIVATE);
     }
 
-
     public boolean isLoggedIn() {
         return sessionId != null && token != null;
     }
-
 
     public void validateVersionFcm(int version) {
         appVersionForFcm = version;
@@ -83,9 +81,8 @@ public class Session{
                 .commit();
     }
 
-
     public void setFcmToken(String fcmToken) {
-        if(this.fcmToken != null && !this.fcmToken.equals(fcmToken)) {
+        if (this.fcmToken != null && !this.fcmToken.equals(fcmToken)) {
             lastFcmUpdate = 0;
             getSharedPreferences().edit().putLong("lastFcmUpdate", lastFcmUpdate).commit();
         }
@@ -115,13 +112,10 @@ public class Session{
                 .putString("employeeName", employeeName)
                 .putString("employeeId", employeeId)
                 .putString("sessionCounter", sessionCounter)
-                .putString("deviceId",deviceId)
-                .putString("loggedInUser",loggedInUser)
+                .putString("deviceId", deviceId)
+                .putString("loggedInUser", loggedInUser)
                 .commit();
     }
-
-
-
 
     public void logout() {
         deviceId = null;
@@ -144,21 +138,9 @@ public class Session{
         return sessionCounter;
     }
 
-
-
     public boolean shouldUpdateToken() {
         long lastServerTime = getSharedPreferences().getLong(GCM_LAST_SERVER_UPDATE, -1);
         return lastServerTime == -1 || (System.currentTimeMillis() - lastServerTime) > GCM_REFRESH_TOKEN_TIME;
-    }
-
-    public static Session init(Context context) {
-        app = context;
-        instance = new Session();
-        return instance;
-    }
-
-    public static Session get() {
-        return instance;
     }
 
 

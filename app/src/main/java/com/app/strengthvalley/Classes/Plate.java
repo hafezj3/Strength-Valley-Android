@@ -1,5 +1,7 @@
 package com.app.strengthvalley.Classes;
 
+import java.util.Objects;
+
 public class Plate {
 
     private long id;
@@ -31,5 +33,18 @@ public class Plate {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Plate)) return false;
+        Plate plate = (Plate) o;
+        return id == plate.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

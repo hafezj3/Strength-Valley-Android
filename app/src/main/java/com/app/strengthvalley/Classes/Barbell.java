@@ -1,5 +1,9 @@
 package com.app.strengthvalley.Classes;
 
+import java.util.Objects;
+
+import androidx.annotation.Nullable;
+
 public class Barbell {
 
     //TODO add known names
@@ -39,5 +43,18 @@ public class Barbell {
 
     public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Barbell barbell = (Barbell) o;
+        return id == barbell.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

@@ -2,12 +2,15 @@ package com.app.strengthvalley.Classes;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Workout {
 
     private long id;
     private long userId;
     private String name;
+    private double totalVolume;
+    private int PRCount;
     private ArrayList<Exercise> exercises;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
@@ -52,6 +55,22 @@ public class Workout {
         return exercises;
     }
 
+    public double getTotalVolume() {
+        return totalVolume;
+    }
+
+    public void setTotalVolume(double totalVolume) {
+        this.totalVolume = totalVolume;
+    }
+
+    public int getPRCount() {
+        return PRCount;
+    }
+
+    public void setPRCount(int PRCount) {
+        this.PRCount = PRCount;
+    }
+
     public void setExercises(ArrayList<Exercise> exercises) {
         this.exercises = exercises;
     }
@@ -70,5 +89,18 @@ public class Workout {
 
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Workout workout = (Workout) o;
+        return id == workout.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
